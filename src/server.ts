@@ -48,7 +48,7 @@ import { filterImageFromURL, deleteLocalFiles, downOriginImageFromURL } from './
     const id = Math.floor(Math.random() * 2000) + "";
     const pathOriginImage = await downOriginImageFromURL(pathImage, id);
     const pathImageFilter = await filterImageFromURL(pathImage, id);
-    res.sendFile(pathImageFilter,);
+    res.sendFile(pathImageFilter);
     const arrPathImage: Array<string> = [];
     arrPathImage.push(pathOriginImage);
     deleteLocalFiles(arrPathImage);
