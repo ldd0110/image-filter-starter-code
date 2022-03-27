@@ -33,17 +33,17 @@ import { filterImageFromURL, deleteLocalFiles, downOriginImageFromURL } from './
 
   // Root Endpoint
   // Displays a simple message to the user
-  app.get("/", async (req, res) => {
+  app.get("/", async (req:express.Request, res:express.Response) => {
     res.send("try GET /filteredimage?image_url={{}}")
   });
 
-  app.get("/filteredimage", async (req, res) => {
+  app.get("/filteredimage", async (req:express.Request, res:express.Response) => {
     const pathImage = req.query.image_url;
     if(!pathImage || /^\s*$/.test(pathImage)){
-      res.send("value is required")
+      res.status(400).send("value is required")
     }
     if(pathImage.length < 5){
-      res.send("path url is not valid")
+      res.status(400).send("path url is not valid")
     }
     const id = Math.floor(Math.random() * 2000) + "";
     const pathOriginImage = await downOriginImageFromURL(pathImage, id);
